@@ -1,0 +1,182 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@200..900&display=swap');
+
+
+body {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+background-color: #0e0d0d;
+transition: all ease .23s;
+
+}
+body::-webkit-scrollbar {
+  width: 9px;
+}
+
+body::-webkit-scrollbar-track {
+  background-color: #464646;
+  width: 7px;
+}
+
+body::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: #ffbb00;
+}
+.main-container{
+  overflow: hidden;
+  background-color: #0e0d0d;
+  height: 100%;
+  
+}
+.home-container{
+  background-color: #0e0d0d;
+  height: 100%;
+  overflow-y: auto;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cards-container{
+  overflow-x: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+/*Navbar**************/
+.main-nav{
+    font-family: "Kanit", sans-serif;
+}
+.nav-link:hover{
+  color: #61fae0;
+}
+
+.logo{
+    /* font-size: 1.6em; */
+    width: 30%;
+    font-family: "Unbounded", sans-serif;
+    color: white;
+    animation: pulse 1s infinite alternate;  
+  }
+
+  @keyframes pulse {
+    
+    100% {
+        text-shadow:
+        0 0 4px #fff,
+        0 0 11px #fff,
+        0 0 40px #0fa,
+        0 0 80px #0fa;
+    }  
+    0% {
+      text-shadow:
+      0 0 2px #fff,
+      0 0 4px #fff,
+      0 0 6px #fff,
+      0 0 10px #0fa,
+      0 0 45px #0fa,
+      0 0 55px #0fa;
+  }
+  }
+  .drop-menu-item{
+    margin-left: 1.3em;
+    display: flex;
+    align-items: center;
+    gap: 6%;
+  }
+  .drop-menu-item:hover{
+    color: #61fae0;
+  }
+.drop-menu .span{
+  border-bottom: 1px solid #2e2e2e;
+  width: 80%;
+  display: flex;
+  align-self: center;
+}
+/*Card **********************/
+.card-container{    
+    transition: background-color 0.3s ease-in-out;    
+}
+.card-container:hover{
+  scale: 1.04;
+  transition: ease-in-out .3s;
+}
+.card-container:hover .card-hovered{
+    background: linear-gradient(180deg,transparent ,#000000 );
+    scale: 1.01;
+    transition: ease .2s;
+}
+
+  .card-badge {
+    background-color:#ffbb00;
+    font-family: 'Rubik', sans-serif;
+    color: black;
+    border-radius: 20px;
+    font-weight: 500;
+  }
+  .card-hovered{
+    font-family: 'Rubik', sans-serif;
+  }
+  .movie-title{
+    color:#ffbb00;
+    font-weight: 500;
+  }
+  .favorite{
+    color: #e00000;
+    transition: all ease .23s;
+    scale: 1.07;
+    animation: heart .23s 4 alternate;  
+  }
+  @keyframes heart {
+    100% {scale: 1;}
+    0% {scale: 1.1;}
+  }
+
+  .bookmark{
+    color: #ffbb00;
+    transition: all ease .23s;
+    scale: 1.04;
+    animation: bookmark .23s 2 alternate;  
+  }
+  @keyframes bookmark {
+    100% {scale: 1;}
+    0% {scale: 1.07;}
+  }
+
+  /* Pagination************* */
+
+  .pagination{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+  .pagination button{
+    width: 40px;
+    height: 40px;
+    font-family: 'Rubik', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    margin: 0 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all .3s ease;
+    background: transparent;
+    border: 1px solid white;
+    color: #eee;
+
+  }
+  .pagination button.active{
+    font-weight: 600;
+    border-color: #101010;
+    background: white;
+    color: #101010;
+  }
