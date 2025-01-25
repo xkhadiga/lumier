@@ -1,16 +1,18 @@
 import React from 'react'
 import Card from './Card'
 import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 
-function Search( {searchMovies} ) {
+function Search( ) {
+  const Srch = useSelector((state)=> state.search.input)
   const [movies,setMovies]=useState([])
   useEffect(()=>{
     const handle_api = async() => {
-      const API ='https://api.themoviedb.org/3/search/movie?api_key=e71685172e401803cf905541e59f4861&query='+ {searchMovies}
+      const API ='https://api.themoviedb.org/3/search/movie?api_key=e71685172e401803cf905541e59f4861&query='+ Srch
       const res = await fetch(API);
       const data = await res.json();
-      console.log('data',data);
+      console.log('SRCH',Srch);
       setMovies(data.results);
     } 
     handle_api();

@@ -7,7 +7,7 @@ import { PiHeartBold, PiHeartFill } from 'react-icons/pi';
 import { FaBookmark, FaRegBookmark, FaStar  } from "react-icons/fa6";
 
 //REDUX
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { add_to_favorites,remove_from_favorites } from '../Redux/favoritesSlice';
 import { add_to_wl, remove_from_wl } from '../Redux/watchlistSlice';
 
@@ -19,10 +19,10 @@ function Card( { movie } ) {
 
   //Handle Favorites *****
     const dispatch = useDispatch();
-    const [isFavorite,setIsFavorite]=useState(false);
+    const favorites = useSelector(state => state.favorites)
+    const isFavorite = favorites.some(item => item.id === movie.id)
 
     const handleFavorites=()=>{
-        setIsFavorite(!isFavorite);
         if(isFavorite){
             dispatch(remove_from_favorites(movie));
         } else{
@@ -30,17 +30,20 @@ function Card( { movie } ) {
         }
     };
   //Handle Watchlist *****
-    const [inWatchlist, setInWatchlist]=useState(false)
     const handleWatchlist = ()=>{
-        setInWatchlist(!inWatchlist);
         if(inWatchlist){dispatch(remove_from_wl(movie))}
         else {dispatch(add_to_wl(movie))}
     }
+
+    const watchlist = useSelector(state => state.watchlist)
+    const inWatchlist = watchlist.some(item => item.id === movie.id);
+
     return ( 
+
     <>
             <div 
             className='card-container w-60 h-96 m-2 rounded-2xl overflow-hidden bg-red-800 '
-            style={{backgroundImage: `url(${`https://image.tmdb.org/t/p/w500${movie.poster_path}`})`,         backgroundSize: 'cover' }}
+            style={{backgroundImage: `url(${`https://image.tmdb.org/t/p/w500${movie.poster_path}`})` ,  backgroundSize: 'cover', backgroundPosition: 'center', }}
             onMouseEnter={() => setHovered(true)} 
             onMouseLeave={() => setHovered(false)}
             >
@@ -85,6 +88,7 @@ function Card( { movie } ) {
     </>
 
   )
+
 }
 
 export default Card

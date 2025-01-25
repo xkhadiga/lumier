@@ -10,42 +10,32 @@ import { TiUserAdd } from 'react-icons/ti';
 
 import { Link } from 'react-router';
 
+import { useSelector, useDispatch } from 'react-redux';
+import { rdx_setForm } from '../Redux/formSlice';
+
 
 
 function Nav( ) {
+
+    const dispatch = useDispatch();
 
     // Dropdown menu******
     const [isOpen, setIsOpen] = useState(false);
     const toggleDropdown = () => {
         setIsOpen(!isOpen); }
 
-    // Search*********
-    const [searchMovies,setSearchMovies]=useState('')
-    const handleSearchMovies=(e)=>{
-      setSearchMovies(e.target.value)
-    }
-    console.log('searched', searchMovies)
-
   return (
     <>
-        <div className='main-nav flex items-center justify-between bg-black text-white  h-20'>
+        <div className='main-nav flex items-center justify-between  text-white  h-20'>
           {/* Logo And Search  ********** */}
-            <div className='flex items-center text-nowrap justify-between ms-4 w-full gap-10'> 
-              <div className='logo text-2xl'>
+            <div className='flex items-center text-nowrap ms-10 '> 
+              <Link className='logo text-2xl' to='/'>
                 Lumiere Movies
-              </div>
-              <div className='search-input hidden xl:flex  items-center rounded-full w-96 border-2 border-white'>
-                  <input type="search" placeholder='Search Movies' 
-                          className='rounded-l-full items-center p-1 text-black text-left pl-4 flex-1'
-                          value={searchMovies}
-                          onChange={()=> handleSearchMovies()}
-                          
-                  />
-                  <Link to="/search" className='p-2 items-center'> <IoSearch /> </Link>
-              </div>
+              </Link>
+
             </div>
            {/* Links and Login ********** */}
-            <div className='nav-links w-full hidden xl:flex items-center justify-end gap-24 me-8'>
+            <div className='nav-links w-full hidden xl:flex items-center justify-end gap-40 me-8 '>
                 <div className='flex gap-3'>
 
                   <div className='nav-link'><Link to="/"> Home </Link></div>
@@ -54,9 +44,17 @@ function Nav( ) {
                 </div>
 
                 <div className='flex gap-3'>
-                  <div className='nav-link'> <Link to="/Login"> Log in </Link> </div>
+                  <div className='nav-link'> 
+                    <button onClick={()=> dispatch(rdx_setForm('login'))}> 
+                      Log in 
+                    </button> 
+                  </div>
                   <span>|</span>
-                  <div className='nav-link'> <Link to="/Signup"> Sign up </Link> </div>
+                  <div className='nav-link'> 
+                    <button onClick={()=> dispatch(rdx_setForm ('signup'))}> 
+                        Sign Up 
+                    </button> 
+                  </div>
                 </div>
             </div>
         {/* Small Screens Menu */}
@@ -84,7 +82,7 @@ function Nav( ) {
 
         </div>
         {/* Small Screens Search */}
-        <div className='bg-black flex sm:hidden items-center justify-center py-4 border-none'>
+        {/* <div className='bg-black flex sm:hidden items-center justify-center py-4 border-none'>
             <div className=' flex  items-center rounded-full w-52 border-2 border-white '>
                   <input type="search" placeholder='Search Movies' 
                           className='rounded-l-full items-center p-1 text-black text-left pl-4 w-full '
@@ -94,7 +92,7 @@ function Nav( ) {
                   <IoSearch />
                   </button>
               </div>
-        </div>
+        </div> */}
     </>
   )
 }

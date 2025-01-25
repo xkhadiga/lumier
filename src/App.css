@@ -53,8 +53,17 @@ body::-webkit-scrollbar-thumb {
 
 /*Navbar**************/
 .main-nav{
+  background-color: black;
     font-family: "Kanit", sans-serif;
+    position: relative
 }
+/* .main-nav::after{
+  content: '';
+  position: absolute;
+  bottom: 0;
+  border-bottom: 1px solid red;
+  width: 90%;
+} */
 .nav-link:hover{
   color: #61fae0;
 }
@@ -109,6 +118,10 @@ body::-webkit-scrollbar-thumb {
   scale: 1.04;
   transition: ease-in-out .3s;
 }
+.card-container:focus{
+  scale: 1.04;
+  transition: ease-in-out .3s;
+}
 .card-container:hover .card-hovered{
     background: linear-gradient(180deg,transparent ,#000000 );
     scale: 1.01;
@@ -137,7 +150,7 @@ body::-webkit-scrollbar-thumb {
   }
   @keyframes heart {
     100% {scale: 1;}
-    0% {scale: 1.1;}
+    0% {scale: 1.13;}
   }
 
   .bookmark{
@@ -179,4 +192,10 @@ body::-webkit-scrollbar-thumb {
     border-color: #101010;
     background: white;
     color: #101010;
+  }
+  .slider-title{
+    color: white;
+    font-size: 18px;
+    font-family: "Kanit", sans-serif;
+
   }

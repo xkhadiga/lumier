@@ -4,14 +4,17 @@ import { createSlice } from '@reduxjs/toolkit'
 
  const favoritesSlice = createSlice({
   name: 'favorites',
-  initialState : [],
+  initialState : JSON.parse(localStorage.getItem('favorites')) || [] ,
   reducers: {
     add_to_favorites: function (state,action){
       const existingMovie = state.find(item => item.id === action.payload.id)
       if (!existingMovie) {state.push(action.payload);}
+      localStorage.setItem('favorites', JSON.stringify(state));
     },
     remove_from_favorites: function (state,action){
-      return state.filter(item => item.id !== action.payload.id);
+      const newState = state.filter(item => item.id !== action.payload.id);
+      localStorage.setItem('favorites', JSON.stringify(newState));
+      return newState;
     },
 
   },
