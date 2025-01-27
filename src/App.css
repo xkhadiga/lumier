@@ -5,6 +5,7 @@
 
 
 @import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@200..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 
 
 body {
@@ -38,7 +39,6 @@ body::-webkit-scrollbar-thumb {
   background-color: #0e0d0d;
   height: 100%;
   overflow-y: auto;
-  
   display: flex;
   align-items: center;
   justify-content: center;
@@ -48,22 +48,59 @@ body::-webkit-scrollbar-thumb {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.slider-header{
+  color: rgb(173, 173, 173);
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 600;
+  font-size: medium;
+}
+
+.slider-header-btn {
+  color: #a39d9d;
+}
+.slider-header-btn:hover{
+  color: #ffbb00;
+}
+.home-slider{
+  background-color: #181818;
+  /* box-shadow: 0 2px 15px black; */
+}
+.slider-button{
+  color: white;
+  position: absolute;
+  z-index: 100;
+  font-size: xx-large;
+  top: 50%;
+}
+.slider-button:hover{
+  color: #ffbb00;
+}
+.slider-button.left{
+  left: 0;
+}
+.slider-button.right{
+  right: 0;
 
 }
+/* .home-section::before{
+  content: '';
+  position: absolute;
+  display: flex;
+  top: 0 ;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: radial-gradient( transparent,rgba(0, 0, 0, 0.3)); 
+} */
 
 /*Navbar**************/
 .main-nav{
-  background-color: black;
     font-family: "Kanit", sans-serif;
-    position: relative
+    position: relative;
+    box-shadow: 4px 0 9px black;
 }
-/* .main-nav::after{
-  content: '';
-  position: absolute;
-  bottom: 0;
-  border-bottom: 1px solid red;
-  width: 90%;
-} */
+
 .nav-link:hover{
   color: #61fae0;
 }
@@ -82,8 +119,7 @@ body::-webkit-scrollbar-thumb {
         text-shadow:
         0 0 4px #fff,
         0 0 11px #fff,
-        0 0 40px #0fa,
-        0 0 80px #0fa;
+        0 0 40px #0fa;
     }  
     0% {
       text-shadow:
@@ -91,9 +127,11 @@ body::-webkit-scrollbar-thumb {
       0 0 4px #fff,
       0 0 6px #fff,
       0 0 10px #0fa,
-      0 0 45px #0fa,
-      0 0 55px #0fa;
+      0 0 45px #0fa;
   }
+  }
+  .search-input{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
   }
   .drop-menu-item{
     margin-left: 1.3em;
@@ -116,18 +154,29 @@ body::-webkit-scrollbar-thumb {
 }
 .card-container:hover{
   scale: 1.04;
-  transition: ease-in-out .3s;
+  transition: ease-in-out .28s;
 }
 .card-container:focus{
   scale: 1.04;
-  transition: ease-in-out .3s;
+  transition: ease-in-out .28s;
 }
 .card-container:hover .card-hovered{
-    background: linear-gradient(180deg,transparent ,#000000 );
-    scale: 1.01;
-    transition: ease .2s;
+  background-color: rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
 }
-
+.card-container:hover::before{
+  content: '';
+  background: linear-gradient(180deg,transparent ,#000000 );
+  scale: 1.04;
+  transition: ease-in-out .28s;
+  z-index: -1;
+  display: flex;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+}
   .card-badge {
     background-color:#ffbb00;
     font-family: 'Rubik', sans-serif;
@@ -137,6 +186,8 @@ body::-webkit-scrollbar-thumb {
   }
   .card-hovered{
     font-family: 'Rubik', sans-serif;
+    width: 100%;
+    height: 100%;
   }
   .movie-title{
     color:#ffbb00;
@@ -167,25 +218,18 @@ body::-webkit-scrollbar-thumb {
   /* Pagination************* */
 
   .pagination{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: 1rem;
+
   }
   .pagination button{
-    width: 40px;
-    height: 40px;
     font-family: 'Rubik', sans-serif;
     font-size: 16px;
     font-weight: 400;
-    margin: 0 10px;
     border-radius: 6px;
     cursor: pointer;
-    transition: all .3s ease;
+    transition: all .2s ease;
     background: transparent;
     border: 1px solid white;
     color: #eee;
-
   }
   .pagination button.active{
     font-weight: 600;
@@ -193,9 +237,8 @@ body::-webkit-scrollbar-thumb {
     background: white;
     color: #101010;
   }
-  .slider-title{
-    color: white;
-    font-size: 18px;
-    font-family: "Kanit", sans-serif;
-
+  .pagination button:hover{
+    border-color: #ffbb00;
+    color: #ffbb00;
+    font-weight: 700;
   }

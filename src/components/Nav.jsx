@@ -12,12 +12,15 @@ import { Link } from 'react-router';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { rdx_setForm } from '../Redux/formSlice';
+import SearchC from '../Search/SearchC'
+import { reset_page } from '../Redux/pageSlice';
 
 
 
 function Nav( ) {
 
     const dispatch = useDispatch();
+
 
     // Dropdown menu******
     const [isOpen, setIsOpen] = useState(false);
@@ -26,19 +29,22 @@ function Nav( ) {
 
   return (
     <>
-        <div className='main-nav flex items-center justify-between  text-white  h-20'>
+        <div className='main-nav flex items-center justify-between  text-white  py-3'>
           {/* Logo And Search  ********** */}
-            <div className='flex items-center text-nowrap ms-10 '> 
-              <Link className='logo text-2xl' to='/'>
-                Lumiere Movies
-              </Link>
+            <div className='flex items-center gap-8 justify-between text-nowrap ms-10 '> 
+              <button className='logo text-2xl' onClick={()=>      dispatch(reset_page())}>
+                <Link to="/">Lumiere Movies</Link>
+              </button>
+              <div className='hidden sm:flex items-center'>
+                <SearchC />
+              </div>
 
             </div>
            {/* Links and Login ********** */}
             <div className='nav-links w-full hidden xl:flex items-center justify-end gap-40 me-8 '>
                 <div className='flex gap-3'>
 
-                  <div className='nav-link'><Link to="/"> Home </Link></div>
+                  <button className='nav-link' onClick={()=>      dispatch(reset_page())}><Link to="/"> Home </Link></button>
                   <div className='nav-link'><Link to="/favorites"> Favorites </Link></div>
                   <div className='nav-link'><Link to="/watchlist"> Watchlist </Link></div>
                 </div>
@@ -52,7 +58,7 @@ function Nav( ) {
                   <span>|</span>
                   <div className='nav-link'> 
                     <button onClick={()=> dispatch(rdx_setForm ('signup'))}> 
-                        Sign Up 
+                        Sign up 
                     </button> 
                   </div>
                 </div>
@@ -82,17 +88,9 @@ function Nav( ) {
 
         </div>
         {/* Small Screens Search */}
-        {/* <div className='bg-black flex sm:hidden items-center justify-center py-4 border-none'>
-            <div className=' flex  items-center rounded-full w-52 border-2 border-white '>
-                  <input type="search" placeholder='Search Movies' 
-                          className='rounded-l-full items-center p-1 text-black text-left pl-4 w-full '
-                          
-                  />
-                  <button className='p-2 items-center text-white '>
-                  <IoSearch />
-                  </button>
-              </div>
-        </div> */}
+        <div className='bg-black flex sm:hidden items-center justify-center py-4 border-none'>
+          <SearchC />
+        </div>
     </>
   )
 }

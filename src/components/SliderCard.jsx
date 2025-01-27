@@ -14,7 +14,7 @@ import { add_to_wl, remove_from_wl } from '../Redux/watchlistSlice';
 
 
 
-function Card( { movie } ) {
+function SliderCard( { movie } ) {
     const [hovered, setHovered]=useState(false)
 
   //Handle Favorites *****
@@ -42,7 +42,7 @@ function Card( { movie } ) {
 
     <>
             <div 
-            className='card-container w-60 h-96 m-2 rounded-2xl overflow-hidden bg-red-800 '
+            className='card-container w-60 h-96 mx-1 my-2  rounded-2xl overflow-hidden bg-red-800'
             style= {{backgroundImage: `url(${`https://image.tmdb.org/t/p/w500${movie.poster_path}`})` ,  backgroundSize: 'cover', backgroundPosition: 'center', }}
             onMouseEnter={() => setHovered(true)} 
             onMouseLeave={() => setHovered(false)}
@@ -92,4 +92,4 @@ function Card( { movie } ) {
 
 }
 
-export default Card
+export default SliderCard

@@ -2,22 +2,21 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 import Card from '../Components/Card';
 import axios from 'axios';
-import SearchC from '../Search/SearchC';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa6';
 import { get_page } from '../Redux/pageSlice';
 import { useDispatch , useSelector} from 'react-redux';
 
 
-function HomeX() {
+function TopRatedMovies() {
   const [movies,setMovies]=useState([])
   const page = useSelector((state) => state.page.page);
   const [totalPages,setTotalPages] = useState(0);
   const dispatch = useDispatch();
 
   // Fetching Movies API + SEARCH *****
-  let API = 'https://api.themoviedb.org/3/trending/movie/day?api_key=e71685172e401803cf905541e59f4861&page='+page
+  let API = 'https://api.themoviedb.org/3/movie/top_rated?api_key=e71685172e401803cf905541e59f4861&page='+page
 
-  // trending movies let API = 'https://api.themoviedb.org/3/trending/movie/day?api_key=e71685172e401803cf905541e59f4861&page='+page
+  // trending movies let API = 
   
   // trending tv let API = 'https://api.themoviedb.org/3/trending/tv/day?api_key=e71685172e401803cf905541e59f4861&page='+page
 
@@ -35,7 +34,6 @@ function HomeX() {
       const Result = res.data.results;
       if (Result.length > 0 ){
         setMovies(Result); 
-        console.log('result length',Result.length)
         setTotalPages(res.data.total_pages);
       }            
     } 
@@ -97,4 +95,4 @@ function HomeX() {
   )
 }
 
-export default HomeX
+export default TopRatedMovies
