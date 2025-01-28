@@ -1,97 +1,66 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { Link } from 'react-router';
-import axios from 'axios';
+
 import HomeX from './HomeX';
-import TrendingMovies from './TopRatedMovies';
-import Card from '../Components/Card';
-import { FaChevronLeft, FaChevronRight } from 'react-icons/fa6';
-import { FaLongArrowAltRight } from "react-icons/fa";
-import { FaArrowCircleRight } from 'react-icons/fa';
-
-
-import SliderCard from '../Components/SliderCard';
-import Slider from 'react-slick';
+import HomeInfinite from './HomeInfinite';
+import MainCarousel from './MainCarousel';
+import Loading from './Loading'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { BsArrowUpCircleFill } from "react-icons/bs";
+import { Fade } from "react-awesome-reveal";
 
 
 
 
 
 function Home() {
-  const [movies,setMovies]=useState([])
 
-  let API = 'https://api.themoviedb.org/3/movie/top_rated?api_key=e71685172e401803cf905541e59f4861'
-
-  const handle_api = async() => {
-    const res = await axios.get(API)
-    console.log('axios res', res.data)
-    const Result = res.data.results.slice(0, 20);
-    if(Result.length > 0){
-      setMovies(Result);                
-    }
-  } 
+// Handle Infinite Loading ********
+  const [loaded, setLoaded] = useState(false);
   useEffect(()=>{
-    handle_api();
+    const handle_loading= ()=> {
+      window.setTimeout(()=>{
+        setLoaded(true)
+      }, 500)
+    }
+    handle_loading();
   },[])
 
-  const RightArrow = (props)=>{
-    const {onClick}= props;
-    return (
-    <button onClick={onClick} className='slider-button right -mx-11'>
-      <FaChevronRight />
-    </button>   )}
-  const LeftArrow = (props)=>{
-    const {onClick}= props;
-    return (
-    <button onClick={onClick} className='slider-button left -mx-11'>
-      <FaChevronLeft />
-    </button>   )}
-  
-
-  const settings = {
-    dots: false,
-    lazyLoad: true,
-    infinite: true,
-    speed: 1500,
-    slidesToShow: 5,
-    slidesToScroll: 5,
-    initialSlide: 1,
-    cssEase: "linear",
-    nextArrow: <RightArrow /> ,
-    prevArrow: <LeftArrow />,
-  };
-  
-
-  return (
-    <> 
-      {/* Trending Movies *********/}
-
-      <div className='relative'>
-      <div className='slider-header flex items-center py-2 justify-between mx-16 mt-8'>
-            <span className='slider-header-span'>Top Rated Movies</span>
-            <Link to='/top-rated-movies' className='slider-header-btn flex items-center gap-2 ' >
-                <span>  view more </span>
-                <span className='text-sm'> <FaArrowCircleRight /> </span> 
-
-            </Link>
-          </div>
-          <div className='home-slider rounded-3xl p-2 mx-10'>
-            <Slider {...settings}>
-
-              { movies.map(movie => (
-                  <SliderCard key={movie.id} movie={movie} />
-                  )) }
+// Handle Up Button********
+const [visible, setVisible]= useState(false);
+  const handle_up = () => {
+    window.scrollTo({top: 0, behavior: 'smooth'})
+  }
+  const handle_up_visible = ()=>{
+      if (window.scrollY > 300){ setVisible(true) }
+      else {setVisible(false)}
+  }
+  useEffect(()=>{
+    window.addEventListener("scroll" , handle_up_visible)
+    return () =>{
+      window.removeEventListener("scroll" , handle_up_visible)
+    }  
+  },[])
 
 
-            </Slider>
-          </div> 
+     if( loaded) 
+      return (
+     <>
+     {visible && (
+        <button className='home-up-btn text-3xl fixed z-10 bottom-10 right-20' onClick={handle_up}>
+          <BsArrowUpCircleFill />
+        </button>
+     )} 
 
-      </div>
-      {/* All Movies and TV Shows **********/}
-      <HomeX />
-    </>
-  )
+     <div className='main-carousel'><MainCarousel /> </div>
+      <HomeInfinite />
+      {/* <HomeX /> */}
+     </>
+
+   )
+    else return  (
+      <Loading />
+  ) 
 }
 
 export default Home

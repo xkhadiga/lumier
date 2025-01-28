@@ -10,6 +10,7 @@ import Search from './Search/Search'
 import Home from './Home/Home'
 import Form from './Login&Signup/Form'
 import TopRatedMovies from './Home/TopRatedMovies'
+import Loading from './Home/Loading'
 
 import { selectFormType } from './Redux/formSlice'
 

@@ -1,8 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import EmptyFV from './EmptyFV';
-
+import Loading from '../Home/Loading'
 import { FaStar,FaRegBookmark  } from 'react-icons/fa6';
 import {  PiHeartFill } from 'react-icons/pi';
 import { FiPlayCircle } from 'react-icons/fi';
@@ -12,11 +12,24 @@ import { remove_from_favorites } from '../Redux/favoritesSlice';
 
 
 function Favorites() {
+
   const favorites = useSelector(state => state.favorites);
   const [hovered, setHovered]=useState(null)
   const dispatch = useDispatch();
 
-  return (
+      // Handle Loading ******************
+      const [loader, setLoader]=useState(false)
+
+      useEffect(()=>{
+        const handle_loader = () => {
+            window.setTimeout(()=>{
+              setLoader(true)
+            }, 200 )
+          }
+            handle_loader();
+        },[])
+         
+  if (loader ) return (
     favorites.length === 0 ? <EmptyFV /> :
     <div className='min-h-screen flex flex-col pt-10 '>
       <div className=' flex flex-wrap items-center justify-center  '> 
@@ -60,6 +73,7 @@ function Favorites() {
       </div>
     </div>
   )
+  else return <Loading />
 }
 
 export default Favorites

@@ -49,6 +49,8 @@ body::-webkit-scrollbar-thumb {
   align-items: center;
   justify-content: center;
 }
+
+/* Slider Carousel ********** */
 .slider-header{
   color: rgb(173, 173, 173);
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -56,44 +58,34 @@ body::-webkit-scrollbar-thumb {
   font-size: medium;
 }
 
-.slider-header-btn {
-  color: #a39d9d;
-}
-.slider-header-btn:hover{
-  color: #ffbb00;
-}
+.slider-header-btn { color: #a39d9d; }
+.slider-header-btn:hover{color: #ffbb00;}
 .home-slider{
   background-color: #181818;
-  /* box-shadow: 0 2px 15px black; */
+  box-shadow: 0 0 15px black;
 }
 .slider-button{
   color: white;
   position: absolute;
-  z-index: 100;
+  z-index: 10;
   font-size: xx-large;
   top: 50%;
 }
-.slider-button:hover{
-  color: #ffbb00;
-}
-.slider-button.left{
-  left: 0;
-}
-.slider-button.right{
-  right: 0;
+.slider-button:hover{ color: #ffbb00; }
+.slider-button.left{ left: 0;}
+.slider-button.right{ right: 0;}
 
+@media (max-width: 1300px) {
+  .main-carousel {
+    display: none;
+  }
 }
-/* .home-section::before{
-  content: '';
-  position: absolute;
-  display: flex;
-  top: 0 ;
-  right: 0;
-  left: 0;
-  bottom: 0;
-  background: radial-gradient( transparent,rgba(0, 0, 0, 0.3)); 
-} */
-
+.home-up-btn{
+  border-radius: 50%;
+  background-color: black;
+  color: #fffed8;
+  box-shadow: 0 0 15px #000000;
+}
 /*Navbar**************/
 .main-nav{
     font-family: "Kanit", sans-serif;
@@ -132,6 +124,11 @@ body::-webkit-scrollbar-thumb {
   }
   .search-input{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
+  .drop-menu{
+    background-color: hsl(0, 0%, 0%, .7);
+    backdrop-filter: blur(10px);
+
   }
   .drop-menu-item{
     margin-left: 1.3em;
@@ -215,11 +212,7 @@ body::-webkit-scrollbar-thumb {
     0% {scale: 1.07;}
   }
 
-  /* Pagination************* */
 
-  .pagination{
-
-  }
   .pagination button{
     font-family: 'Rubik', sans-serif;
     font-size: 16px;
@@ -242,3 +235,25 @@ body::-webkit-scrollbar-thumb {
     color: #ffbb00;
     font-weight: 700;
   }
+
+
+    /* LOADING Animation **************/
+    .loader {
+      width: 48px;
+      height: 48px;
+      border: 5px solid;
+      border-color: #ffbb00 transparent;
+      border-radius: 50%;
+      display: inline-block;
+      box-sizing: border-box;
+      animation: rotation 1s linear infinite;
+    }
+    
+    @keyframes rotation {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    } 

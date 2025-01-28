@@ -29,13 +29,13 @@ function Nav( ) {
 
   return (
     <>
-        <div className='main-nav flex items-center justify-between  text-white  py-3'>
+        <div className='main-nav flex items-center justify-between  text-white gap-2 py-3'>
           {/* Logo And Search  ********** */}
             <div className='flex items-center gap-8 justify-between text-nowrap ms-10 '> 
               <button className='logo text-2xl' onClick={()=>      dispatch(reset_page())}>
                 <Link to="/">Lumiere Movies</Link>
               </button>
-              <div className='hidden sm:flex items-center'>
+              <div className='hidden sm:flex items-center '>
                 <SearchC />
               </div>
 
@@ -88,7 +88,7 @@ function Nav( ) {
 
         </div>
         {/* Small Screens Search */}
-        <div className='bg-black flex sm:hidden items-center justify-center py-4 border-none'>
+        <div className='bg-transparent flex sm:hidden items-center justify-center py-4 border-none'>
           <SearchC />
         </div>
     </>

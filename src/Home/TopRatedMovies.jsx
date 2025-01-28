@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 import Card from '../Components/Card';
+import Loading from './Loading';
 import axios from 'axios';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa6';
 import { get_page } from '../Redux/pageSlice';
@@ -27,6 +28,7 @@ function TopRatedMovies() {
   // trending all movies + tv let API = 'https://api.themoviedb.org/3/trending/all/day?api_key=e71685172e401803cf905541e59f4861&page='+page
   
 
+     // Handle API Fetching ************
 
     const handle_api = async() => {
       const res = await axios.get(API)
@@ -38,22 +40,33 @@ function TopRatedMovies() {
       }            
     } 
 
- 
+     // Handle Pagination ************
+    useEffect(()=>{
+      handle_api();
+      window.scrollTo({
+        top: 0 ,
+      })
+    }, [page])
 
-  useEffect(()=>{
-    handle_api();
-    window.scrollTo({
-      top: 0 ,
-    })
-  }, [page])
+    const handlePageChange = (newPage) => {
+      if (newPage > 0 && newPage <= totalPages) {
+        dispatch(get_page(newPage));
+      }
+    };
 
-  const handlePageChange = (newPage) => {
-    if (newPage > 0 && newPage <= totalPages) {
-      dispatch(get_page(newPage));
-    }
-  };
-  return (
-    <> 
+    // Handle Loading ******************
+    const [loader, setLoader]=useState(false)
+
+    useEffect(()=>{
+      const handle_loader = () => {
+          window.setTimeout(()=>{
+            setLoader(true)
+          }, 300 )
+        }
+          handle_loader();
+      },[])
+       
+       if (loader) return (  <> 
     <div className='flex items-center justify-between mx-20 mt-2 text-2xl text-white'>
         <div> </div>
         <div></div>
@@ -93,6 +106,7 @@ function TopRatedMovies() {
       </div>
     </>
   )
+  else return   (<Loading />)
 }
 
 export default TopRatedMovies
