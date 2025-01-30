@@ -1,13 +1,10 @@
-import React, { useEffect, useState, useRef } from 'react';
-
-import HomeX from './HomeX';
+import React, { useEffect, useState } from 'react';
+import Loading from './Loading'
 import HomeInfinite from './HomeInfinite';
 import MainCarousel from './MainCarousel';
-import Loading from './Loading'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { BsArrowUpCircleFill } from "react-icons/bs";
-import { Fade } from "react-awesome-reveal";
 
 
 
@@ -54,7 +51,6 @@ const [visible, setVisible]= useState(false);
 
      <div className='main-carousel'><MainCarousel /> </div>
       <HomeInfinite />
-      {/* <HomeX /> */}
      </>
 
    )

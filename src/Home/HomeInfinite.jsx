@@ -1,24 +1,12 @@
 import React from 'react'
-import { useState, useEffect } from 'react';
+import { useState} from 'react';
 import Card from '../Components/Card';
 import axios from 'axios';
 import InfiniteScroll from 'react-infinite-scroller';
 
 
-
 function HomeInfinite() {
 
-
-  // trending movies let API = 'https://api.themoviedb.org/3/trending/movie/day?api_key=e71685172e401803cf905541e59f4861&page='+page
-  
-  // trending tv let API = 'https://api.themoviedb.org/3/trending/tv/day?api_key=e71685172e401803cf905541e59f4861&page='+page
-
-  //top rated movies API = 'https://api.themoviedb.org/3/movie/top_rated?api_key=e71685172e401803cf905541e59f4861&page='+page
-
-  // coming soon  API = 'https://api.themoviedb.org/3/movie/upcoming?api_key=e71685172e401803cf905541e59f4861&page='+page
-
-  // trending all movies + tv let API = 'https://api.themoviedb.org/3/trending/all/day?api_key=e71685172e401803cf905541e59f4861&page='+page
-  
   const [movies,setMovies]=useState([])
   const [page, setPage] = useState(1)
   const [hasMore, setHasMore]=useState(true)
@@ -31,7 +19,7 @@ function HomeInfinite() {
 
         const res = await axios.get(API)
         const newMovies = res.data.results;
-        setMovies((prevMovies)=>[...prevMovies, ...newMovies]); 
+        setMovies((prevMovies)=> page === 1? (newMovies) : [...prevMovies, ...newMovies]); 
         setPage(page + 1);    
         if (page >= res.data.total_pages)
           {setHasMore(false)}       
@@ -41,7 +29,6 @@ function HomeInfinite() {
       }
      
     } 
-
 
   return (
     <> 

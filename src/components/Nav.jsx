@@ -1,20 +1,16 @@
 import React from 'react'
+import { Link } from 'react-router';
+import SearchC from '../Search/SearchC'
+import {  useDispatch } from 'react-redux';
+import { rdx_setForm } from '../Redux/formSlice';
+import { reset_page } from '../Redux/pageSlice';
+
 import { useState } from 'react';
-import { IoSearch } from "react-icons/io5";
-import { TiThMenu } from "react-icons/ti";
 import { AiFillHome } from 'react-icons/ai';
 import { MdFavorite } from 'react-icons/md';
 import { FaBookmark } from 'react-icons/fa6';
 import { IoLogInOutline } from 'react-icons/io5';
-import { TiUserAdd } from 'react-icons/ti';
-
-import { Link } from 'react-router';
-
-import { useSelector, useDispatch } from 'react-redux';
-import { rdx_setForm } from '../Redux/formSlice';
-import SearchC from '../Search/SearchC'
-import { reset_page } from '../Redux/pageSlice';
-
+import { TiThMenu, TiUserAdd } from "react-icons/ti";
 
 
 function Nav( ) {

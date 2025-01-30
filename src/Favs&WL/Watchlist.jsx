@@ -1,14 +1,10 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { useState, useEffect } from 'react';
 import EmptyWL from './EmptyWL';
 import Loading from '../Home/Loading'
-import { FaStar,FaRegBookmark, FaBookmark  } from 'react-icons/fa6';
-import { PiHeartBold ,PiHeartFill } from 'react-icons/pi';
 import { FiPlayCircle } from 'react-icons/fi';
-
-import { useDispatch } from 'react-redux';
-import { add_to_favorites , remove_from_favorites } from '../Redux/favoritesSlice';
+import { useState, useEffect } from 'react';
+import { FaStar, FaBookmark  } from 'react-icons/fa6';
+import { useSelector, useDispatch  } from 'react-redux';
 import { remove_from_wl } from '../Redux/watchlistSlice';
 
 

@@ -1,10 +1,10 @@
 import React from 'react'
 import { useState } from 'react'
+import { useNavigate } from 'react-router';
 
 //ICONS
-import { FiPlayCircle } from "react-icons/fi";
 import { PiHeartBold, PiHeartFill } from 'react-icons/pi';
-import { FaBookmark, FaRegBookmark, FaStar  } from "react-icons/fa6";
+import { FaBookmark, FaRegBookmark, FaStar, FaCirclePlay  } from "react-icons/fa6";
 
 //REDUX
 import { useDispatch, useSelector } from 'react-redux';
@@ -16,6 +16,10 @@ import { add_to_wl, remove_from_wl } from '../Redux/watchlistSlice';
 
 function SliderCard( { movie } ) {
     const [hovered, setHovered]=useState(false)
+    const navigate = useNavigate();
+    const handle_navigate = ()=>{
+        navigate("/movie", {state: {movie}})
+    }
 
   //Handle Favorites *****
     const dispatch = useDispatch();
@@ -49,25 +53,30 @@ function SliderCard( { movie } ) {
             >
                 
         {hovered ? (
-            <div className='card-hovered flex flex-col justify-around py-6 gap-20  text-white ' >
+            <div onClick={()=> handle_navigate()} className='card-hovered flex flex-col justify-around py-6 gap-20  text-white ' >
                 <div className=' flex items-center justify-end gap-1 me-4'>
                     <div className='text-2xl flex items-center'>   
                         <button 
                             onClick={()=> handleFavorites()}
                             className={isFavorite? 'favorite' : ''}
                             >
-                                {isFavorite? <PiHeartFill /> : <PiHeartBold />} 
+                                {isFavorite?  
+                                <div> <PiHeartFill /> </div> : 
+                                <div className='fv-empty'> <PiHeartBold /> </div>
+                                } 
                         </button> 
                     </div>
                     <div className='text-xl flex items-center'> 
                         <button onClick={()=> handleWatchlist()}
                                 className={inWatchlist ? 'bookmark' : ''}    
                         >
-                            {inWatchlist? <FaBookmark /> : <FaRegBookmark />} 
+                            {inWatchlist? <div> <FaBookmark /> </div>  : 
+                            <div className='fv-empty'> <FaRegBookmark /> </div>
+                            } 
                         </button>                    
                     </div>
                 </div>
-                <div className='flex text-4xl items-center justify-center'> <FiPlayCircle /> </div>
+                <button onClick={()=> handle_navigate()} className='card-play flex text-4xl items-center justify-center'> <FaCirclePlay /> </button>
                 <div className='flex justify-center items-center'>
                     <div className='movie-title text-lg text-center'>{movie.title}</div>
                 </div>

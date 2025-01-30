@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { IoSearch } from "react-icons/io5";
 import { Link } from 'react-router';
-import { FaCircleChevronRight } from 'react-icons/fa6';
 import { rdx_search } from '../Redux/searchSlice';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router';
 
 function SearchC() {
 
@@ -12,12 +12,13 @@ function SearchC() {
   const handleSearch= (e)=>{
     const value= e.target.value;
     setSearch(value);
-    dispatch(rdx_search(value))
+    dispatch(rdx_search(value));
+    e.key === 'Enter'
   }
-
+  const navigate = useNavigate()
   const handleKeyDown = (e) => {
     if (e.key === 'Enter'){
-      dispatch(rdx_search(search));
+     navigate("/search")
     }
   };
   return (
@@ -30,16 +31,12 @@ function SearchC() {
                     onKeyDown={handleKeyDown}
                     
             />
-        </div>
-        { search ? (
+        </div> 
+        
           <Link to="/search" className='flex text-3xl p-2 items-center  text-white hover:text-yellow-300'> <IoSearch />
             </Link>
-        ): 
-        (
-          <span className='flex text-3xl p-2 items-center    text-white hover:text-yellow-300'> <IoSearch />
-          </span>
-        )
-        }
+       
+    
             
     </div>
 

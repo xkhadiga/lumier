@@ -11,7 +11,7 @@ import Home from './Home/Home'
 import Form from './Login&Signup/Form'
 import TopRatedMovies from './Home/TopRatedMovies'
 import Loading from './Home/Loading'
-
+import PlayMovie from './Components/PlayMovie'
 import { selectFormType } from './Redux/formSlice'
 
 
@@ -31,6 +31,7 @@ function Container() {
       <Routes>
         <Route path='/' element={ <Home /> } />
         <Route path='/search' element={<Search  />} />
+        <Route path='/movie' element={<PlayMovie />} />
         <Route path='/favorites' element={<Favorites />} />
         <Route path='/watchlist' element={<Watchlist />} />
         <Route path='/Login' element={<Login />} />

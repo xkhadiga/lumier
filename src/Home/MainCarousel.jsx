@@ -1,18 +1,13 @@
 
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState} from 'react';
 import { Link } from 'react-router';
 import axios from 'axios';
-
-import { FaChevronLeft, FaChevronRight } from 'react-icons/fa6';
-import { FaArrowCircleRight } from 'react-icons/fa';
-
-
 import SliderCard from '../Components/SliderCard';
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
-
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa6';
+import { FaArrowCircleRight } from 'react-icons/fa';
 
 
 function MainCarousel() {
@@ -22,7 +17,6 @@ function MainCarousel() {
   
     const handle_api = async() => {
       const res = await axios.get(API)
-      console.log('axios res', res.data)
       const Result = res.data.results.slice(0, 20);
       if(Result.length > 0){
         setMovies(Result);                

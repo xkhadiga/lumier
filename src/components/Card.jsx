@@ -1,8 +1,9 @@
 import React from 'react'
 import { useState } from 'react'
+import { useNavigate } from 'react-router';
 
 //ICONS
-import { FiPlayCircle } from "react-icons/fi";
+import { FaCirclePlay } from 'react-icons/fa6';
 import { PiHeartBold, PiHeartFill } from 'react-icons/pi';
 import { FaBookmark, FaRegBookmark, FaStar  } from "react-icons/fa6";
 
@@ -16,12 +17,15 @@ import { add_to_wl, remove_from_wl } from '../Redux/watchlistSlice';
 
 function Card( { movie } ) {
     const [hovered, setHovered]=useState(false)
+    const navigate = useNavigate();
+    const handlePlay = ()=>{
+        navigate('/movie', {state:{movie}})
+    }
 
-  //Handle Favorites *****
+  //Handle Favorites ********
     const dispatch = useDispatch();
-    const favorites = useSelector(state => state.favorites)
+    const favorites = useSelector(state => state.favorites);
     const isFavorite = favorites.some(item => item.id === movie.id)
-
     const handleFavorites=()=>{
         if(isFavorite){
             dispatch(remove_from_favorites(movie));
@@ -29,12 +33,11 @@ function Card( { movie } ) {
             dispatch(add_to_favorites(movie));
         }
     };
-  //Handle Watchlist *****
+  //Handle Watchlist ********
     const handleWatchlist = ()=>{
         if(inWatchlist){dispatch(remove_from_wl(movie))}
         else {dispatch(add_to_wl(movie))}
     }
-
     const watchlist = useSelector(state => state.watchlist)
     const inWatchlist = watchlist.some(item => item.id === movie.id);
 
@@ -49,25 +52,30 @@ function Card( { movie } ) {
             >
                 
         {hovered ? (
-            <div className='card-hovered flex flex-col justify-around py-6 gap-20  text-white ' >
+            <div onClick={()=> handlePlay()}  className='card-hovered flex flex-col justify-around py-6 gap-20  text-white ' >
                 <div className=' flex items-center justify-end gap-1 me-4'>
                     <div className='text-2xl flex items-center'>   
                         <button 
                             onClick={()=> handleFavorites()}
                             className={isFavorite? 'favorite' : ''}
                             >
-                                {isFavorite? <PiHeartFill /> : <PiHeartBold />} 
+                                {isFavorite?  <div>  <PiHeartFill /> </div> : 
+                                <div className='fv-empty'> <PiHeartBold /> </div>
+                                } 
                         </button> 
                     </div>
                     <div className='text-xl flex items-center'> 
                         <button onClick={()=> handleWatchlist()}
                                 className={inWatchlist ? 'bookmark' : ''}    
                         >
-                            {inWatchlist? <FaBookmark /> : <FaRegBookmark />} 
+                            {inWatchlist?   <div> <FaBookmark /> </div>  : 
+                            <div className='fv-empty'> <FaRegBookmark /> </div>
+                            } 
                         </button>                    
                     </div>
                 </div>
-                <div className='flex text-4xl items-center justify-center'> <FiPlayCircle /> </div>
+                <button onClick={()=> handlePlay()} className='card-play flex text-4xl items-center justify-center'> <FaCirclePlay />
+                </button>
                 <div className='flex justify-center items-center'>
                     <div className='movie-title text-lg text-center'>{movie.title}</div>
                 </div>

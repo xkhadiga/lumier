@@ -1,13 +1,11 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { useState, useEffect } from 'react';
 import EmptyFV from './EmptyFV';
 import Loading from '../Home/Loading'
-import { FaStar,FaRegBookmark  } from 'react-icons/fa6';
+import { FaStar } from 'react-icons/fa6';
 import {  PiHeartFill } from 'react-icons/pi';
 import { FiPlayCircle } from 'react-icons/fi';
-
-import { useDispatch } from 'react-redux';
+import { useState, useEffect } from 'react';
+import { useSelector, useDispatch  } from 'react-redux';
 import { remove_from_favorites } from '../Redux/favoritesSlice';
 
 
