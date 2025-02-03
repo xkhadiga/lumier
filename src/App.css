@@ -44,6 +44,15 @@ body::-webkit-scrollbar-thumb {
   align-items: center;
   justify-content: center;
 }
+.error-notify{
+  position: absolute;
+  background-color: rgba(247, 241, 241);
+  backdrop-filter: blur(10px);
+  /* border: 2px solid rgb(105, 0, 0); */
+  color: rgb(197, 0, 0);
+  z-index: 100;
+
+}
 .cards-container{
   overflow-x: hidden;
   display: flex;
@@ -81,12 +90,25 @@ body::-webkit-scrollbar-thumb {
     display: none;
   }
 }
-.home-up-btn{
+
+.home-up-btn {
+  background-color: hsl(225, 34%, 89%,.4);
+  border: none;
+  padding: .5rem;
   border-radius: 50%;
-  background-color: black;
-  color: #fffed8;
-  box-shadow: 0 0 15px #000000;
-}
+  color: #000;
+  cursor: pointer;
+  box-shadow: 0 0 10px black;
+ }
+ .home-up-btn:hover{
+  color: white;
+ }
+ 
+ .home-up-btn:active {
+  color: #f2e8cf;
+  box-shadow: 0 0 10px black;
+ }
+
 /* Navbar **************************** */
 .main-nav{
   font-family: "Kanit", sans-serif;
@@ -96,6 +118,17 @@ body::-webkit-scrollbar-thumb {
 
 .nav-link:hover{
   color: #61fae0;
+}
+.categoris-btn:hover{
+  color: #61fae0;
+}
+.cate-menu-item{
+  color: white;
+}
+.cate-menu-item:hover{
+  color: #ffbb00;
+  scale: 1.04;
+  transition: ease-in-out .28s;
 }
 
 .logo{
@@ -218,6 +251,8 @@ body::-webkit-scrollbar-thumb {
   }
   .card-play{
     color: rgb(209, 209, 209);
+    position: relative;
+    margin: auto;
   }
   .card-play:hover{
     color:white;

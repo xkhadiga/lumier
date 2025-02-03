@@ -7,7 +7,7 @@ function EmptySearch() {
 
   return (
         <div className='h-screen flex justify-center mt-14 items-start'>
-            <div className="w-5/6 xl:w-3/6 mx-auto px-10 py-4 rounded-lg">
+            <div className="animate-in slide-in-from-bottom-48 duration-500 w-5/6 xl:w-3/6 mx-auto px-10 py-4 rounded-lg">
                 <div>
 
                     </div>

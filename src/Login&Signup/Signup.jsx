@@ -10,7 +10,7 @@ function Signup() {
     
   return (
 
-  <div className="flex flex-col items-center justify-center px-6 py-6 mx-auto md:h-screen lg:py-0">
+  <div className="animate-in zoom-in duration-700 flex flex-col items-center justify-center px-6 py-6 mx-auto md:h-screen lg:py-0">
 
       <div className="w-full bg-gray-700 rounded-xl shadow flex flex-col md:mt-0 sm:max-w-md xl:p-0 p-2 ">
         <button className='text-white text-2xl flex items-center justify-end mt-2 me-2 hover:text-yellow-500 '
@@ -46,7 +46,7 @@ function Signup() {
                             <label htmlFor="remember" className="text-gray-100  ">I accept the</label>
                           </div>
                       </div>
-                      <a href="#" className="text-sm font-medium text-yellow-300 hover:underline ">Terms and Conditions</a>
+                      <a href="#" className="text-sm font-medium text-yellow-300 hover:underline now ">Terms and Conditions</a>
                   </div>
                   <button type="button" className="w-full text-white hover:text-yellow-300 bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-950 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">Sign Up</button>
                   <div className='flex gap-2 items-center justify-center'>

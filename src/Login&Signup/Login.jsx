@@ -1,17 +1,63 @@
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { IoClose } from 'react-icons/io5'
 import { rdx_setForm } from '../Redux/formSlice'
 import { useDispatch } from 'react-redux'
+import { useRef } from 'react'
+import axios, { AxiosError }  from 'axios'
+import { BiSolidError } from "react-icons/bi";
+import { rdx_resetForm, rdx_login } from '../Redux/formSlice'
+
 
 function Login() {
 
 const dispatch = useDispatch();
+const [ notify,setNotify] = useState(false);
+const usernameRef = useRef();
+const passwordRef= useRef();
+const handle_api = async() => {
+    const credits = { username : usernameRef.current.value ,
+                      password : passwordRef.current.value};
+                   
+    const json_credits = JSON.stringify(credits);
+    const api = 'https://dummyjson.com/auth/login';
+    const init =
+    {method: 'POST',
+        headers: { 'Content-Type' : 'application/json' },
+        body: json_credits,
+    }   
+    try {
+        const response = await axios.post(api, credits);
+         console.log('api-data-status', response);
+         setNotify(false);
+         dispatch(rdx_resetForm());
+         dispatch(rdx_login(true));
+
+    } 
+    catch(error) {
+        console.log('error', error)
+                 setNotify(true);
+            const timeout = setTimeout(()=>{
+                setNotify(false);
+            }, 2200);
+            return ()=> clearTimeout(timeout);
+      
+
+    }
+    }
 
   return (
 
-  <div className="flex flex-col items-center justify-center px-6 py-6 mx-auto md:h-screen lg:py-0">
-
+  <div className="animate-in zoom-in duration-400 flex flex-col items-center justify-center px-6 py-6 mx-auto md:h-screen lg:py-0 relative">
+    {notify && (
+        <div 
+            className='error-notify top-0 sm:top-[10%] sm:text-nowrap animate-in zoom-in duration-200 rounded-lg '> 
+            <div className="p-2 my-2 mx-5 text-lg  rounded-lg font-semibold flex items-center justify-center gap-1" role="alert">
+            <span className="font-medium">
+                <BiSolidError />
+            </span> Invalid username or password. Please try again.
+            </div> 
+        </div>)}
       <div className="w-full bg-gray-700 rounded-xl shadow flex flex-col md:mt-0 sm:max-w-md xl:p-0 p-2 ">
         <button className='text-white text-2xl flex items-center justify-end mt-2 me-2 hover:text-yellow-500 '
                 onClick={()=> dispatch(rdx_setForm(null))}      
@@ -25,11 +71,11 @@ const dispatch = useDispatch();
               <form className="space-y-4 md:space-y-6">
                   <div>
 
-                      <input  type='text' className="bg-gray-50 border border-gray-300 text-black rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2 " placeholder="Email address" required=""/>
+                      <input  type='text' className="bg-gray-50 border border-gray-300 text-black rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2 pl-5 " placeholder="Username" ref={usernameRef}  />
                   </div>
                   <div>
 
-                      <input type="password" placeholder="Password" className="bg-gray-50 border border-gray-300 text-black rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2 " required=""/>
+                      <input type="password" placeholder="Password" className="bg-gray-50 border border-gray-300 text-black rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2 pl-5 " ref={passwordRef}/>
                   </div>
                   <div className="flex items-center justify-between gap-3">
                       <div className="flex items-start">
@@ -42,7 +88,9 @@ const dispatch = useDispatch();
                       </div>
                       <a href="#" className="text-sm font-medium text-yellow-300 hover:underline ">Forgot password?</a>
                   </div>
-                  <button type="button" className="w-full text-white hover:text-yellow-300 bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-950 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">LOGIN</button>
+                  <button type="button" className="w-full text-white hover:text-yellow-300 bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-950 font-medium rounded-lg text-sm px-5 py-2.5 text-center " onClick={()=>handle_api()}>
+                    LOGIN
+                  </button>
                   <div className='flex gap-2 items-center justify-center'>
                         <p className="text-sm font-light text-gray-100 text-center ">
                         Don’t have an account yet?                    

@@ -22,7 +22,7 @@ function SearchC() {
     }
   };
   return (
-    <div className=' flex sm:border-none   border-b-yellow-300 border-b-2 justify-center p-2 gap-1'>
+    <div className=' flex sm:border-none justify-center p-2 gap-1'>
         <div className='search-input flex  items-center rounded-full lg:w-96 sm:w-32  '>
             <input type="text" placeholder='Search Movies' 
                     className='flex rounded-full items-center p-1.5 text-left pl-4 flex-1 focus:ring-1 focus:ring-yellow-400 text-black'

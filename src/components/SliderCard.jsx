@@ -53,7 +53,7 @@ function SliderCard( { movie } ) {
             >
                 
         {hovered ? (
-            <div onClick={()=> handle_navigate()} className='card-hovered flex flex-col justify-around py-6 gap-20  text-white ' >
+            <div className='card-hovered flex flex-col justify-around py-6 gap-20  text-white ' >
                 <div className=' flex items-center justify-end gap-1 me-4'>
                     <div className='text-2xl flex items-center'>   
                         <button 

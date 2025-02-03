@@ -5,6 +5,9 @@ import MainCarousel from './MainCarousel';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { BsArrowUpCircleFill } from "react-icons/bs";
+import { Animate } from 'react-simple-animate';
+import { useSelector } from 'react-redux';
+import { motion } from 'framer-motion';
 
 
 
@@ -39,6 +42,10 @@ const [visible, setVisible]= useState(false);
     }  
   },[])
 
+  // Handle Login********
+  const login = useSelector((state)=> state.setForm.login)
+
+
 
      if( loaded) 
       return (
@@ -49,8 +56,35 @@ const [visible, setVisible]= useState(false);
         </button>
      )} 
 
-     <div className='main-carousel'><MainCarousel /> </div>
+     <div className='main-carousel'>
+                  {/* {login && (                  
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 1 }}
+                      exit={{ opacity: 0 }}
+                    > */}
+      <Animate
+        play
+        start={{ opacity: 0, transform: "scale(0.8)" }}
+        end={{ opacity: 1, transform: "scale(1)" }}
+        duration={0.8}
+        delay={0.1}
+      >
+      <MainCarousel />
+      </Animate>
+                    {/* </motion.div> )} */}
+      </div>
+      <Animate
+        play
+        start={{ transform: "translateY(35%)", opacity: 0 }}
+        end={{ transform: "translateY(0)", opacity: 1 }}
+        duration={0.7}
+        delay={0.5}
+        >
+
       <HomeInfinite />
+      </Animate>
      </>
 
    )

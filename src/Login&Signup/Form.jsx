@@ -17,14 +17,14 @@ function Form() {
   },[modal]);
   const [loaded, setLoaded]=useState(false);
   
- if (loaded) return (
-    <div className='bg-gray-900/50 top-0 left-0 right-0 bottom-0 z-50 flex justify-center fixed'>
+return (
+    <div className='animate-in fade-in duration-700 bg-gray-900/50 top-0 left-0 right-0 bottom-0 z-50 flex justify-center fixed'>
         <div className='flex items-center justify-center'>
           {modalx}
         </div>
     </div>
   )
-  else return (<Loading />)
+
 }
 
 export default Form 

@@ -13,7 +13,7 @@ import TopRatedMovies from './Home/TopRatedMovies'
 import Loading from './Home/Loading'
 import PlayMovie from './Components/PlayMovie'
 import { selectFormType } from './Redux/formSlice'
-
+import Categories from './Home/Categories'
 
 import { Routes, Route, Outlet } from 'react-router'
 import { useSelector } from 'react-redux'
@@ -29,6 +29,7 @@ function Container() {
     )}
 
       <Routes>
+
         <Route path='/' element={ <Home /> } />
         <Route path='/search' element={<Search  />} />
         <Route path='/movie' element={<PlayMovie />} />
@@ -37,6 +38,7 @@ function Container() {
         <Route path='/Login' element={<Login />} />
         <Route path='/Signup' element={<Signup />} />
         <Route path='/top-rated-movies' element={<TopRatedMovies />} />
+        <Route path='/categorie' element={<Categories />} />
       </Routes>
     </div>
   )
