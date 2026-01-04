@@ -1,5 +1,5 @@
 import { useState} from 'react';
-import Card from '../Components/Card';
+import Card from '../components/Card';
 import axios from 'axios';
 import InfiniteScroll from 'react-infinite-scroller';
 

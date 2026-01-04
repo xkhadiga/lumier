@@ -1,6 +1,6 @@
 import EmptyWL from './EmptyWL';
 import { useSelector } from 'react-redux';
-import Card from '../Components/Card'
+import Card from '../components/Card'
 
 
 function Watchlist() {

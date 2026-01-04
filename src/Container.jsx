@@ -1,7 +1,7 @@
 
 
 
-import Nav from './Components/Nav'
+import Nav from './components/Nav'
 import Favorites from './Favs&WL/Favorites'
 import Watchlist from './Favs&WL/Watchlist'
 import Login from './Login&Signup/Login'
@@ -10,7 +10,7 @@ import Search from './Search/Search'
 import Home from './Home/Home'
 import Form from './Login&Signup/Form'
 import TopRatedMovies from './Home/TopRatedMovies'
-import PlayMovie from './Components/PlayMovie'
+import PlayMovie from './components/PlayMovie'
 import { selectFormType } from './Redux/formSlice'
 import Categories from './Home/Categories'
 

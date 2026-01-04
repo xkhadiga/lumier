@@ -2,7 +2,7 @@
 import  { useEffect, useState} from 'react';
 import { Link } from 'react-router';
 import axios from 'axios';
-import SliderCard from '../Components/SliderCard';
+import SliderCard from '../components/SliderCard';
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";

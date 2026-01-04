@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import Card from '../Components/Card';
+import Card from '../components/Card';
 import Loading from './Loading';
 import axios from 'axios';
 import InfiniteScroll from 'react-infinite-scroller';
