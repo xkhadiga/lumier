@@ -1,7 +1,6 @@
-import React, { useEffect } from 'react'
+import  { useEffect } from 'react'
 import Login from './Login'
 import Signup from './Signup'
-import Loading from '../Home/Loading'
 import { useSelector } from 'react-redux'
 import { useState } from 'react'
 import { selectFormType } from '../Redux/formSlice'

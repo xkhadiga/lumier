@@ -1,10 +1,10 @@
 
-import React, { useEffect, useState } from 'react'
+import  useState  from 'react'
 import { IoClose } from 'react-icons/io5'
 import { rdx_setForm } from '../Redux/formSlice'
 import { useDispatch } from 'react-redux'
 import { useRef } from 'react'
-import axios, { AxiosError }  from 'axios'
+import axios  from 'axios'
 import { BiSolidError } from "react-icons/bi";
 import { rdx_resetForm, rdx_login } from '../Redux/formSlice'
 

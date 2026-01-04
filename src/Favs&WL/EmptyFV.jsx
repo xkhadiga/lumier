@@ -1,22 +1,9 @@
-import React from 'react'
 import { Link } from 'react-router'
 import { BiSolidMoviePlay } from 'react-icons/bi'
-import { useState,useEffect } from 'react'
-import Loading from '../Home/Loading'
 
 function EmptyFV() {
 
-      // Handle Loading ******************
-      const [loader, setLoader]=useState(false)
 
-      useEffect(()=>{
-        const handle_loader = () => {
-            window.setTimeout(()=>{
-              setLoader(true)
-            }, 200 )
-          }
-            handle_loader();
-        },[])
          
 return (
         <div className='h-screen flex justify-center mt-14 items-start'>

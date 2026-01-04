@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Loading from './Loading'
 import HomeInfinite from './HomeInfinite';
 import MainCarousel from './MainCarousel';
